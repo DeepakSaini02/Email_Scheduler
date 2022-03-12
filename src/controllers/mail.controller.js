@@ -6,9 +6,11 @@ const Mail = require("../models/mail.model")
 
 const sendMail = require("../utils/send-mail")
 
-
+//report for sending mails if mail send seccuessfully or request failed.
 const report = []
 
+
+// function for converting a fixed time format and give the difference with current system time in milliseconds.
 function timerConveter(time) {
     let date_time = time.split(",")
     let date = date_time[0].split(" ")
@@ -17,15 +19,13 @@ function timerConveter(time) {
     else
         only_date = date[0][0] + date[0][1]
 
-    str = `${only_date} ${date[1].trim()} ${date_time[1].trim()} ${date_time[2].trim()}`
-    console.log(str);
+    let str = `${only_date} ${date[1].trim()} ${date_time[1].trim()} ${date_time[2].trim()}`
     let date1 = new Date(str);
     let date2 = new Date()
 
     if (date2 > date1) {
         return "Not Valid"
     }
-    // console.log(date2, date1);
     return Math.abs(date2 - date1);
 }
 
